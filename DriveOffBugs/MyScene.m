@@ -7,6 +7,7 @@
 //
 
 #import "MyScene.h"
+#import "GameScene.h"
 
 @implementation MyScene
 
@@ -18,7 +19,7 @@
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
-        myLabel.text = @"Hello, World!";
+        myLabel.text = @"Drive off bugs!";
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
@@ -31,19 +32,10 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+    GameScene *scene = [[GameScene alloc] initWithSize:self.frame.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    SKTransition *tr = [SKTransition fadeWithDuration:0.5];
+    [self.view presentScene:scene transition:tr];
 }
 
 -(void)update:(CFTimeInterval)currentTime {

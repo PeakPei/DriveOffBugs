@@ -17,13 +17,13 @@
 		1366F16C183DF51300414D68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1366F16A183DF51300414D68 /* Main.storyboard */; };
 		1366F16F183DF51300414D68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F16E183DF51300414D68 /* ViewController.m */; };
 		1366F172183DF51300414D68 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F171183DF51300414D68 /* MyScene.m */; };
-		1366F174183DF51300414D68 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 1366F173183DF51300414D68 /* Spaceship.png */; };
 		1366F176183DF51300414D68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1366F175183DF51300414D68 /* Images.xcassets */; };
 		1366F17D183DF51300414D68 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1366F17C183DF51300414D68 /* XCTest.framework */; };
 		1366F17E183DF51300414D68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1366F156183DF51300414D68 /* Foundation.framework */; };
 		1366F17F183DF51300414D68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1366F15A183DF51300414D68 /* UIKit.framework */; };
 		1366F187183DF51300414D68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1366F185183DF51300414D68 /* InfoPlist.strings */; };
 		1366F189183DF51300414D68 /* DriveOffBugsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F188183DF51300414D68 /* DriveOffBugsTests.m */; };
+		1366F194183DF5DA00414D68 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F193183DF5DA00414D68 /* GameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +53,14 @@
 		1366F16E183DF51300414D68 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1366F170183DF51300414D68 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		1366F171183DF51300414D68 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		1366F173183DF51300414D68 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		1366F175183DF51300414D68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1366F17B183DF51300414D68 /* DriveOffBugsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveOffBugsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1366F17C183DF51300414D68 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1366F184183DF51300414D68 /* DriveOffBugsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DriveOffBugsTests-Info.plist"; sourceTree = "<group>"; };
 		1366F186183DF51300414D68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1366F188183DF51300414D68 /* DriveOffBugsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriveOffBugsTests.m; sourceTree = "<group>"; };
+		1366F192183DF5DA00414D68 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		1366F193183DF5DA00414D68 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +129,8 @@
 				1366F16E183DF51300414D68 /* ViewController.m */,
 				1366F170183DF51300414D68 /* MyScene.h */,
 				1366F171183DF51300414D68 /* MyScene.m */,
-				1366F173183DF51300414D68 /* Spaceship.png */,
+				1366F192183DF5DA00414D68 /* GameScene.h */,
+				1366F193183DF5DA00414D68 /* GameScene.m */,
 				1366F175183DF51300414D68 /* Images.xcassets */,
 				1366F15F183DF51300414D68 /* Supporting Files */,
 			);
@@ -242,7 +244,6 @@
 			files = (
 				1366F163183DF51300414D68 /* InfoPlist.strings in Resources */,
 				1366F176183DF51300414D68 /* Images.xcassets in Resources */,
-				1366F174183DF51300414D68 /* Spaceship.png in Resources */,
 				1366F16C183DF51300414D68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +265,7 @@
 			files = (
 				1366F172183DF51300414D68 /* MyScene.m in Sources */,
 				1366F16F183DF51300414D68 /* ViewController.m in Sources */,
+				1366F194183DF5DA00414D68 /* GameScene.m in Sources */,
 				1366F169183DF51300414D68 /* AppDelegate.m in Sources */,
 				1366F165183DF51300414D68 /* main.m in Sources */,
 			);
