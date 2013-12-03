@@ -24,6 +24,11 @@
 		1366F187183DF51300414D68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1366F185183DF51300414D68 /* InfoPlist.strings */; };
 		1366F189183DF51300414D68 /* DriveOffBugsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F188183DF51300414D68 /* DriveOffBugsTests.m */; };
 		1366F194183DF5DA00414D68 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F193183DF5DA00414D68 /* GameScene.m */; };
+		139968CA184D883D00CD1CCD /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 139968C8184D883D00CD1CCD /* Spark.sks */; };
+		139968CB184D883D00CD1CCD /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 139968C9184D883D00CD1CCD /* spark.png */; };
+		139968CD184D8A3500CD1CCD /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 139968CC184D8A3500CD1CCD /* Smoke.sks */; };
+		139968CF184D8A8C00CD1CCD /* Bom.sks in Resources */ = {isa = PBXBuildFile; fileRef = 139968CE184D8A8C00CD1CCD /* Bom.sks */; };
+		139968D1184D8B8F00CD1CCD /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 139968D0184D8B8F00CD1CCD /* Fire.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,11 @@
 		1366F188183DF51300414D68 /* DriveOffBugsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriveOffBugsTests.m; sourceTree = "<group>"; };
 		1366F192183DF5DA00414D68 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		1366F193183DF5DA00414D68 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		139968C8184D883D00CD1CCD /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
+		139968C9184D883D00CD1CCD /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		139968CC184D8A3500CD1CCD /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
+		139968CE184D8A8C00CD1CCD /* Bom.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bom.sks; sourceTree = "<group>"; };
+		139968D0184D8B8F00CD1CCD /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +154,11 @@
 				1366F161183DF51300414D68 /* InfoPlist.strings */,
 				1366F164183DF51300414D68 /* main.m */,
 				1366F166183DF51300414D68 /* DriveOffBugs-Prefix.pch */,
+				139968C8184D883D00CD1CCD /* Spark.sks */,
+				139968C9184D883D00CD1CCD /* spark.png */,
+				139968CC184D8A3500CD1CCD /* Smoke.sks */,
+				139968CE184D8A8C00CD1CCD /* Bom.sks */,
+				139968D0184D8B8F00CD1CCD /* Fire.sks */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,9 +257,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				139968CB184D883D00CD1CCD /* spark.png in Resources */,
 				1366F163183DF51300414D68 /* InfoPlist.strings in Resources */,
+				139968CA184D883D00CD1CCD /* Spark.sks in Resources */,
+				139968CF184D8A8C00CD1CCD /* Bom.sks in Resources */,
 				1366F176183DF51300414D68 /* Images.xcassets in Resources */,
+				139968D1184D8B8F00CD1CCD /* Fire.sks in Resources */,
 				1366F16C183DF51300414D68 /* Main.storyboard in Resources */,
+				139968CD184D8A3500CD1CCD /* Smoke.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +498,7 @@
 				1366F18E183DF51300414D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1366F18F183DF51300414D68 /* Build configuration list for PBXNativeTarget "DriveOffBugsTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +507,7 @@
 				1366F191183DF51300414D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

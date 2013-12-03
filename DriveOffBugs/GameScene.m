@@ -27,6 +27,11 @@ static const uint32_t mask_apple = 16;
     SKEmitterNode *pt_fire,*pt_spark,*pt_bom,*pt_smoke;
     SKLabelNode *scoreNode;
     BOOL gameover;
+    
+    SKEmitterNode*	_particleFire;			//炎のパーティクル
+	SKEmitterNode*	_particleSpark;			//スパークのパーティクル
+	SKEmitterNode*	_particleBom;			//ボムのパーティクル
+	SKEmitterNode*	_particleSmoke;			//スモークのパーティクル
 }
 
 @synthesize score;
@@ -90,6 +95,62 @@ static const uint32_t mask_apple = 16;
     self.score = 0;
 }
 
+-(void)makeFireParticle:(CGPoint)point
+{
+	if(_particleFire==nil){
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"Fire" ofType:@"sks"];
+		_particleFire = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+		_particleFire.numParticlesToEmit = 50;
+		[self addChild:_particleFire];
+	}
+	else{
+		[_particleFire resetSimulation];
+	}
+	_particleFire.position = point;
+}
+
+-(void)makeSparkParticle:(CGPoint)point
+{
+	if(_particleSpark==nil){
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"Spark" ofType:@"sks"];
+		_particleSpark = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+		_particleSpark.numParticlesToEmit = 50;
+		[self addChild:_particleSpark];
+	}
+	else{
+		[_particleSpark resetSimulation];
+	}
+	_particleSpark.position = point;
+}
+
+
+-(void)makeImpactParticle:(CGPoint)point
+{
+	if(_particleBom==nil){
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"Bom" ofType:@"sks"];
+		_particleBom = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+		_particleBom.numParticlesToEmit = 350;
+		[self addChild:_particleBom];
+	}
+	else{
+		[_particleBom resetSimulation];
+	}
+	_particleBom.position = point;
+}
+-(void)makeImpactEndParticle:(CGPoint)point
+{
+	if(_particleSmoke==nil){
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"Smoke" ofType:@"sks"];
+		_particleSmoke = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+		_particleSmoke.numParticlesToEmit = 100;
+		[self addChild:_particleSmoke];
+	}
+	else{
+		[_particleBom resetSimulation];
+	}
+	_particleSmoke.position = point;
+}
+
 -(void)addBug
 {
     if (gameover) {
@@ -109,7 +170,20 @@ static const uint32_t mask_apple = 16;
     bug.physicsBody.contactTestBitMask = mask_killer|mask_bread;
     bug.physicsBody.collisionBitMask = mask_bullet|mask_killer|mask_bread;
     
-#warning Add particle.
+    // Spark! 派手過ぎ？
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Spark" ofType:@"sks"];
+	SKEmitterNode	*fireSpark = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	fireSpark.position = CGPointMake(0, 0);
+	fireSpark.particleLifetime = 0.3;
+	fireSpark.particleBirthRate = 500;
+	fireSpark.emissionAngle = (M_PI/2);
+	fireSpark.emissionAngleRange = 0;
+	fireSpark.particlePositionRange = CGVectorMake(10, 10);
+	fireSpark.particleAlpha = 0.4;
+	fireSpark.particleAlphaRange = 0.0;
+	fireSpark.particleAlphaSpeed = -0.3;
+	[bug addChild:fireSpark];
+	fireSpark.targetNode = self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -143,15 +217,36 @@ static const uint32_t mask_apple = 16;
         bullet.physicsBody.contactTestBitMask = mask_bug;
         bullet.physicsBody.collisionBitMask = mask_bug;
         
-#warning Add particle.
-        //[bullet addChild:fireSpark];
-    
+        // Spark!
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Spark" ofType:@"sks"];
+        SKEmitterNode *fireSpark = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        fireSpark.position = CGPointMake((bullet.size.width/2)-7, -(bullet.size.height/2));
+        fireSpark.particleLifetime = 0.1;
+        fireSpark.numParticlesToEmit = 50;
+        fireSpark.particleBirthRate = 200;
+        fireSpark.emissionAngle = -(M_PI/2);
+        fireSpark.emissionAngleRange = 0;
+        fireSpark.particlePositionRange = CGVectorMake(0, 0);
+        
+        [bullet addChild:fireSpark];
     }];
 }
 
 -(void)didSimulatePhysics
 {
-#warning Remove outranged nodes.
+    // Remove outranged nodes. Is it needed?
+    [self enumerateChildNodesWithName:BUG usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y < 0 || node.position.x < 0 || node.position.x > 320) {
+            [node removeFromParent];
+        }
+    }];
+
+    [self enumerateChildNodesWithName:BULLET usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y > self.frame.size.height || node.position.y < 0 || node.position.x < 0 || node.position.x > 320) {
+            [node removeFromParent];
+        }
+    }];
+
 }
 
 -(void)didBeginContact:(SKPhysicsContact *)contact
@@ -161,18 +256,24 @@ static const uint32_t mask_apple = 16;
     if ([a isEqualToString:BREAD]) {
         // ハエがパンに！
         
+        [self makeImpactParticle:contact.contactPoint];
+        [self makeImpactEndParticle:contact.contactPoint];
         
         [self showGameOver];
     } else if([a isEqualToString:KILLER]){
         // ハエが殺虫剤に！
         [contact.bodyA.node removeFromParent];
         
+        [self makeImpactParticle:contact.contactPoint];
+        [self makeImpactEndParticle:contact.contactPoint];
         
         [self showGameOver];
     }else if([a isEqualToString:BULLET]){
         // ヒット！
         [contact.bodyA.node removeFromParent];
         
+		[self makeFireParticle:contact.contactPoint];
+		[self makeSparkParticle:contact.contactPoint];
         
         self.score += 10;
         scoreNode.text = [NSString stringWithFormat:@"%d",self.score];
